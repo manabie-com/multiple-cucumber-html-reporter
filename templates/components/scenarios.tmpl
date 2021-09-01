@@ -153,8 +153,12 @@
                                         <a href="#error<%= scenarioIndex %><%= stepIndex %>-error" data-toggle="collapse">+ Show Error</a>
                                     <% } %>
 
-                                    <% if (step.text || step.json || step.html || step.image) { %>
+                                    <% if (step.text || step.json || step.image) { %>
                                         <a href="#info<%= scenarioIndex %><%= stepIndex %>-text" data-toggle="collapse">+ Show Attachments</a>
+                                    <% } %>
+
+                                    <% if (step.html) { %>
+                                        <a href="#info<%= scenarioIndex %><%= stepIndex %>-html" data-toggle="collapse">+ Show Info</a>
                                     <% } %>
 
                                     <% if (!_.isEmpty(step.attachments)) { %>
@@ -183,12 +187,16 @@
                                 </div>
                             <% } %>
 
-                            <% if (step.text || step.json || step.html || step.image) { %>
+                            <% if (step.text || step.json || step.image) { %>
                                 <div id="info<%= scenarioIndex %><%= stepIndex %>-text" class="scenario-step-collapse collapse">
                                     <%= step.attachmentsHtml.join('') %>
                                 </div>
                             <% } %>
-
+                            <% if (step.html) { %>
+                                <div id="info<%= scenarioIndex %><%= stepIndex %>-html" class="scenario-step-collapse collapse">
+                                    <div class=info><%= step.html.join('<br/>') %></div>
+                                </div>
+                            <% } %>
                             <% if (!_.isEmpty(step.attachments)) { %>
                                 <% _.each(step.attachments, function(attachment, attachmentIndex) { %>
                                     <div id="info<%= scenarioIndex %><%= stepIndex %>-attachment<%= attachmentIndex %>" class="scenario-step-collapse collapse">
